@@ -37,6 +37,7 @@ type SettingsFormSchema = z.infer<typeof formSchema>;
 const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
     const params = useParams();
     const router = useRouter();
+    const origin = useOrigin();
     const [open, setOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -133,7 +134,7 @@ const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
             <Separator />
             <ApiAlert
                 title="NEXT_PUBLIC_URL"
-                description={`${useOrigin()}/api/${params.storeId}`}
+                description={`${origin}/api/${params.storeId}`}
                 variant="public"
             />
         </>
