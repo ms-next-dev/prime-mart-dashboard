@@ -38,6 +38,7 @@ const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
     const params = useParams();
     const router = useRouter();
     const origin = useOrigin();
+
     const [open, setOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
