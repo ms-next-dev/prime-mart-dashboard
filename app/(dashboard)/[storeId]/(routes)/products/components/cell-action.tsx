@@ -14,10 +14,10 @@ import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { BillboardColumn } from "./column";
+import { ProductColumn } from "./column";
 
 interface CellActionProps {
-    data: BillboardColumn;
+    data: ProductColumn;
 }
 
 const CellAction: React.FC<CellActionProps> = ({ data }) => {
@@ -28,18 +28,18 @@ const CellAction: React.FC<CellActionProps> = ({ data }) => {
 
     const onCopy = (id: string) => {
         navigator.clipboard.writeText(id);
-        toast.success(`Billboard id copied to the clipboard`);
+        toast.success(`Product id copied to the clipboard`);
     };
 
     const onDelete = async () => {
         try {
             setIsLoading(true);
-            await axios.delete(`/api/${params.storeId}/billboards/${data.id}`);
+            await axios.delete(`/api/${params.storeId}/products/${data.id}`);
             router.refresh();
-            toast.success("Billboard deleted.");
+            toast.success("Product deleted.");
         } catch (error: any) {
             toast.error(
-                "Make sure you removed all categories using this billboard first."
+                error.response.data || "something went wrong on Delete"
             );
         } finally {
             setIsLoading(false);
@@ -70,7 +70,7 @@ const CellAction: React.FC<CellActionProps> = ({ data }) => {
                     <DropdownMenuItem
                         onClick={() =>
                             router.push(
-                                `/${params.storeId}/billboards/${data.id}`
+                                `/${params.storeId}/products/${data.id}`
                             )
                         }
                     >
