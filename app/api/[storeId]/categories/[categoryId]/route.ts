@@ -7,12 +7,6 @@ export async function GET(
     { params }: { params: { categoryId: string } }
 ) {
     try {
-        const { userId } = auth();
-
-        if (!userId) {
-            return new NextResponse("Unauthenticated", { status: 403 });
-        }
-
         if (!params.categoryId) {
             return new NextResponse("Category id is required", {
                 status: 400,
