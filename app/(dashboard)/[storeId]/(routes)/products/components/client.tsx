@@ -11,40 +11,36 @@ import { useEffect } from "react";
 import { ProductColumn, columns } from "./column";
 
 interface ProductClientProps {
-    data: ProductColumn[];
+  data: ProductColumn[];
 }
 
 const ProductClient: React.FC<ProductClientProps> = ({ data }) => {
-    const router = useRouter();
-    const params = useParams();
+  const router = useRouter();
+  const params = useParams();
 
-    useEffect(() => {
-        router.refresh();
-    }, []);
+  useEffect(() => {
+    router.refresh();
+  }, [router]);
 
-    return (
-        <div>
-            <div className="flex items-center justify-between">
-                <Heading
-                    title={`Products (${data.length})`}
-                    description="Manage products for your store"
-                />
-                <Button
-                    onClick={() =>
-                        router.push(`/${params.storeId}/products/new`)
-                    }
-                >
-                    <Plus className="mr-2 h-4 w-4" />
-                    Add New
-                </Button>
-            </div>
-            <Separator />
-            <DataTable columns={columns} data={data} searchKey="name" />
-            <Heading title="Api" description="Api calls for Products" />
-            <Separator />
-            <ApiList entityName="products" entityIdName="productId" />
-        </div>
-    );
+  return (
+    <div>
+      <div className="flex items-center justify-between">
+        <Heading
+          title={`Products (${data.length})`}
+          description="Manage products for your store"
+        />
+        <Button onClick={() => router.push(`/${params.storeId}/products/new`)}>
+          <Plus className="mr-2 h-4 w-4" />
+          Add New
+        </Button>
+      </div>
+      <Separator />
+      <DataTable columns={columns} data={data} searchKey="name" />
+      <Heading title="Api" description="Api calls for Products" />
+      <Separator />
+      <ApiList entityName="products" entityIdName="productId" />
+    </div>
+  );
 };
 
 export default ProductClient;
