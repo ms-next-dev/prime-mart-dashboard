@@ -1,6 +1,6 @@
 import prismaDb from "@/lib/prismaDb";
 import { format } from "date-fns";
-import BillboardClient from "./components/client";
+import CategoryClient from "./components/client";
 import { CategoryColumn } from "./components/column";
 
 const CategoriesPage = async ({ params }: { params: { storeId: string } }) => {
@@ -26,7 +26,7 @@ const CategoriesPage = async ({ params }: { params: { storeId: string } }) => {
     return (
         <div className="flex-col">
             <div className="flex-1 space-y-4 p-8 pt-6">
-                <BillboardClient data={formattedCategories} />
+                <CategoryClient data={formattedCategories} />
             </div>
         </div>
     );
